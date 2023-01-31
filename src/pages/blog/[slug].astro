@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Bio from "../../components/Bio.astro";
+import '../../styles/prism.css'
+import MarkdownIt from 'markdown-it';
+import prism from 'markdown-it-prism';
+
+
+export async function getStaticPaths() {
+  let allPosts: any = [];
+  await fetch("https://dev.to/api/articles?username=scooperdev", {
+    method: "GET",
+    headers: {
+      Accept: "application/vnd.forem.api-v1+json",
+    },
+  })
+    .then((response) => response.json())
+    .then(
+      (response) => (allPosts = response.filter((e: any) => !e.organization))
+    )
+    .catch((err) => console.error(err));
+
+  allPosts = allPosts.sort(
+    (a: any, b: any) => b.positive_reactions_count - a.positive_reactions_count
+  );
+  return allPosts.map((p) => ({
+    params: { slug: p.slug },
+    props: { post: p },
+  }));
+}
+
+const { slug, id } = Astro.props.post;
+const permalink = `${Astro.site.href}${slug}`;
+
+let article: any =  {};
+await fetch("https://dev.to/api/articles/" + id, {
+    method: "GET",
+    headers: {
+      Accept: "application/vnd.forem.api-v1+json",
+    },
+  })
+    .then((response) => article = response.json())
+		.then(response => article = response)
+    .catch((err) => console.error(err));
+const { body_html, body_markdown, title, description, published_at } = article;
+
+const md = new MarkdownIt();
+md.use(prism);
+
+  const mdText = md.render(body_markdown);
+
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
+>
+  <header>
+    <p>{published_at} ~ {0}</p>
+    <h1>{title}</h1>
+    <hr />
+  </header>
+  <div class="container">
+    <article class="content">
+      <Fragment set:html={mdText} />
+    </article>
+    <hr />
+    <Bio />
+  </div>
+</BaseLayout>
+
+<style>
+  header {
+    text-align: center;
+  }
+
+  header h1 {
+    margin-bottom: 0.7em;
+  }
+
+  header p {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-family: var(--font-family-sans);
+    font-weight: 600;
+  }
+
+  header hr {
+    min-width: 100px;
+    width: 30%;
+  }
+</style>
