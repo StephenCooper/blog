@@ -1,0 +1,15 @@
+---
+import BlogList from '../../components/BlogList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'AG Grid Blogs';
+const description = 'Latest articles.';
+const permalink = `${Astro.site.href}blog-ag-grid`;
+
+---
+
+<BaseLayout title={title} description={description} permalink={permalink} current="blog-ag-grid">
+  <BlogList header={title} organization="AG Grid" current="blog-ag-grid" ></BlogList>
+</BaseLayout>
+
+

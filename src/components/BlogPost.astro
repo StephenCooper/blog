@@ -1,0 +1,74 @@
+---
+import MarkdownIt from "markdown-it";
+import prism from "markdown-it-prism";
+import Bio from "../components/Bio.astro";
+import { loadArticle } from "../data/blog-posts/DevApiService";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/prism.css";
+
+const { articleId, current, permalink} = Astro.props;
+
+let article: any = await loadArticle(articleId);
+
+const {
+  body_markdown,
+  title,
+  description,
+  readable_publish_date,
+  canonical_url,
+  reading_time_minutes,
+  positive_reactions_count,
+  cover_image
+} = article;
+
+const md = new MarkdownIt();
+md.use(prism);
+
+const mdText = md.render(body_markdown);
+
+---
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  canonical={canonical_url}
+  current={current}
+>
+<header>
+  <p>
+    {readable_publish_date} ~ <span>&#9825;</span>
+    {positive_reactions_count} ~ {reading_time_minutes} mins
+  </p>
+  <h1>{title}</h1>
+  {cover_image && <img src={cover_image}>}
+</header>
+<div class="container">
+  <article class="content">
+    <Fragment set:html={mdText} />
+  </article>
+  <hr />
+  <Bio />
+</div>
+</BaseLayout>
+
+<style>
+  header {
+    text-align: center;
+  }
+
+  header h1 {
+    margin-bottom: 0.7em;
+  }
+
+  header p {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-family: var(--font-family-sans);
+    font-weight: 600;
+  }
+
+  header hr {
+    min-width: 100px;
+    width: 30%;
+  }
+</style>

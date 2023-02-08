@@ -4,7 +4,7 @@ import { loadAllArticles } from "../../data/blog-posts/DevApiService";
 import "../../styles/prism.css";
 
 export async function getStaticPaths() {
-  let allPosts = await loadAllArticles()
+  let allPosts: any = await loadAllArticles("AG Grid");
   return allPosts.map((p) => ({
     params: { slug: p.slug },
     props: { post: p },
@@ -16,4 +16,4 @@ const permalink = `${Astro.site.href}${slug}`;
 
 ---
 
-<BlogPost current="blog" permalink={permalink} articleId={id}></BlogPost>
+<BlogPost current="blog-ag-grid" permalink={permalink} articleId={id}></BlogPost>

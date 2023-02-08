@@ -1,0 +1,67 @@
+---
+
+const { header, limit = -1, organization, current = 'blog' } = Astro.props;
+
+let allPosts: any = [];
+await fetch('https://dev.to/api/articles?username=scooperdev', {
+		method: 'GET',
+		headers: {
+			'Accept': 'application/vnd.forem.api-v1+json',
+		},
+	})
+		.then(response => response.json())
+		.then(response => allPosts = response
+    .filter((e: any) => (organization == undefined && e.organization?.name !== 'AG Grid') || (e.organization?.name === organization))
+    )
+		.catch(err => console.error(err));
+
+//allPosts = allPosts.sort((a: any, b: any) => b.positive_reactions_count - a.positive_reactions_count);
+if(limit > 0){
+  allPosts = allPosts.slice(0,limit);
+}
+---
+
+<div class="container">
+  <h1>{header}</h1>
+  {allPosts.map((post, index) => {
+    const href = `/${current}/${post.slug}`;
+    return (
+      <div>
+        { index !== 0 && <hr /> }
+        <div class="post-item">
+          <h2>
+            
+            <a href={href}>
+              {post.cover_image && <img src={post.cover_image}>}
+              {post.title}</a>
+          </h2>
+          <p>{post.description}</p>
+          <div class="post-item-footer">
+            <span class="post-item-date">— {post.readable_publish_date}</span>
+            <span class="post-item-date"> <span>&#9825;</span> {post.positive_reactions_count}</span>
+          </div>
+        </div>
+        { index === (limit -1) && <hr /> }
+      </div>
+    )
+  })}
+</div>
+
+<style>
+  h2,
+  .post-item-footer {
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+  }
+
+  .post-item-date {
+    color: var(--text-secondary);
+    text-align: left;
+    text-transform: uppercase;
+    margin-right: 16px;
+  }
+
+  hr {
+    margin: 60px auto;
+  }
+</style>
