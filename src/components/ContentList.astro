@@ -25,7 +25,7 @@ if (limit > 0) {
           <h2>{link.name}</h2>
           {link.youTubeLink ? (
             <iframe
-              width="560"
+              width="100%"
               height="315"
               src={link.youTubeLink}
               title={link.name}
@@ -34,11 +34,7 @@ if (limit > 0) {
             />
           ) : undefined}
           {link.raw ? (
-            <iframe
-              src={link.raw.src}
-              width={link.raw.width}
-              height={link.raw.height}
-            />
+            <iframe src={link.raw.src} width="100%" height="315" />
           ) : undefined}
           {index === limit - 1 && <hr />}
         </div>
