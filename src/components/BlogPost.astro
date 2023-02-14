@@ -6,10 +6,9 @@ import { loadArticle } from "../data/blog-posts/DevApiService";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/prism.css";
 
-const { articleId, current, permalink} = Astro.props;
+const { articleId, current, permalink } = Astro.props;
 
 let article: any = await loadArticle(articleId);
-
 const {
   body_markdown,
   title,
@@ -18,15 +17,15 @@ const {
   canonical_url,
   reading_time_minutes,
   positive_reactions_count,
-  cover_image
+  cover_image,
 } = article;
 
 const md = new MarkdownIt();
 md.use(prism);
 
 const mdText = md.render(body_markdown);
-
 ---
+
 <BaseLayout
   title={title}
   description={description}
@@ -34,21 +33,28 @@ const mdText = md.render(body_markdown);
   canonical={canonical_url}
   current={current}
 >
-<header>
-  <p>
-    {readable_publish_date} ~ <span>&#9825;</span>
-    {positive_reactions_count} ~ {reading_time_minutes} mins
-  </p>
-  <h1>{title}</h1>
-  {cover_image && <img src={cover_image}>}
-</header>
-<div class="container">
-  <article class="content">
-    <Fragment set:html={mdText} />
-  </article>
-  <hr />
-  <Bio />
-</div>
+  <header>
+    <p>
+      {readable_publish_date} ~ <span>&#9825;</span>
+      {positive_reactions_count} ~ {reading_time_minutes} mins
+    </p>
+    <h1>{title}</h1>
+    {cover_image && <img src={cover_image} />}
+  </header>
+  <div class="container">
+    <div class="con-link">
+      Originally published at <a
+        style="color: #1395b8;"
+        target="_blank"
+        href={canonical_url}>{canonical_url.split("/").slice(0, 4).join("/")}</a
+      >
+    </div>
+    <article class="content">
+      <Fragment set:html={mdText} />
+    </article>
+    <hr />
+    <Bio />
+  </div>
 </BaseLayout>
 
 <style>
@@ -70,5 +76,9 @@ const mdText = md.render(body_markdown);
   header hr {
     min-width: 100px;
     width: 30%;
+  }
+  .con-link {
+    width: fit-content;
+    margin: auto;
   }
 </style>

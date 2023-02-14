@@ -1,21 +1,46 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = 'About Me';
-const description = 'About Stephen';
+const title = "About Me";
+const description = "About Stephen";
 const permalink = `${Astro.site.href}about`;
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="about">
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="about"
+>
   <div class="container">
     <h1>About</h1>
     <figure class="about-image">
-      <img src="/assets/profile-pic.webp" alt="Stephen Cooper" width="330">
+      <img
+        class="circle"
+        src="/assets/profile-pic.webp"
+        alt="Stephen Cooper"
+        width="330"
+      />
     </figure>
     <p>
-      Hi, I'm <strong>Stephen</strong>. I'm a senior software engineer at <a href="https://www.ag-grid.com" target="_blank">AG Grid</a>.</p>
-    <p>I enjoy blogging and speaking at conferences and meet-ups about things that I have built and learnt.</p>
-    <p>I also have 4 kids and a dog called Coco! </p>
+      Hi, I'm <strong>Stephen</strong>. I'm a senior software engineer at <a
+        href="https://www.ag-grid.com"
+        target="_blank">AG Grid</a
+      >.
+    </p>
+    <p>
+      I enjoy blogging and speaking at conferences and meet-ups about things
+      that I have built and learnt.
+    </p>
+    <p>With my wife, I have 4 kids and a dog called Coco!</p>
+    <div>
+      <img
+        class="circle"
+        src="/assets/coco.webp"
+        alt="Coco the dog"
+        width="230"
+      />
+    </div>
   </div>
 </BaseLayout>
 
@@ -26,7 +51,7 @@ const permalink = `${Astro.site.href}about`;
     max-width: 300px;
   }
 
-  .about-image img {
+  .circle {
     border-radius: 50%;
     margin-bottom: 1.5em;
   }

@@ -1,17 +1,19 @@
 ---
-import BlogList from '../../components/BlogList.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogList from "../../components/BlogList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const title = 'Blog';
-const description = 'Latest articles.';
+const title = "Blog";
+const description = "Latest articles.";
 const permalink = `${Astro.site.href}blog`;
-
-
-
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="blog">
-  <BlogList header={title} ></BlogList>
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
+>
+  <BlogList header={title}>
+    <p>A collection of my blog posts covering a range of web related topics.</p>
+  </BlogList>
 </BaseLayout>
-
-

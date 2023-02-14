@@ -17,11 +17,14 @@ export async function loadAllArticles(organization: string | undefined = undefin
         },
     })
         .then((response) => response.json())
+        .then((response) => {
+            console.log(response[0]);
+            return response;
+        })
         .then(
             (response) => response
                 .filter((e: any) => (organization == undefined && e.organization?.name !== 'AG Grid')
-                    || (e.organization?.name === organization))
+                    || (e.organization?.name === organization) && !e.description?.includes('guest post'))
         )
         .catch((err) => console.error(err));
-
 }

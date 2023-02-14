@@ -1,0 +1,53 @@
+---
+import ContentList, { ContentLink } from "../../components/ContentList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Content";
+const description = "Latest content.";
+const permalink = `${Astro.site.href}content`;
+
+const youTubeLinks: ContentLink[] = [
+  {
+    name: "ngTemplate Outlet Angular Connect",
+    youTubeLink: "https://www.youtube.com/embed/2SnVxPeJdwE?start=43",
+  },
+  {
+    name: "ngConf Sponsor 2022",
+    youTubeLink: "https://www.youtube.com/embed/4dhBnvgb5H0?start=83",
+  },
+  {
+    name: "JS Nation 2022",
+    youTubeLink: "https://www.youtube.com/embed/kOwAjLgSY14?start=41",
+  },
+  {
+    name: "AG Grid Angular Getting Started",
+    youTubeLink:
+      "https://www.youtube.com/embed/videoseries?start=83&list=PLsZlhayVgqNw6VHFn4j6FcJM5vLACsf0x",
+  },
+  {
+    name: "Angular Nation meet AG Grid Team",
+    youTubeLink: "https://www.youtube.com/embed/MRy--gvA8kI?start=189",
+  },
+  {
+    name: "Angular Kenya",
+    youTubeLink: "https://www.youtube.com/embed/5a2YKmVzMBM?start=7",
+  },
+  {
+    name: "Angular Plus Show",
+    raw: {
+      src: "https://widget.spreaker.com/player?episode_id=50111025&theme=light&playlist=false&cover_image_url=https%3A%2F%2Fd3wo5wojvuv7l.cloudfront.net%2Fimages.spreaker.com%2Foriginal%2F0271956aa05833cb43519105dd2a9266.jpg",
+      width: "100%",
+      height: "400px",
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="content"
+>
+  <ContentList header={title} links={youTubeLinks} current="content" />
+</BaseLayout>
