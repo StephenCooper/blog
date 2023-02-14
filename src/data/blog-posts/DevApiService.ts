@@ -18,7 +18,6 @@ export async function loadAllArticles(organization: string | undefined = undefin
     })
         .then((response) => response.json())
         .then((response) => {
-            console.log(response[0]);
             return response;
         })
         .then(
