@@ -22,10 +22,9 @@ if (limit > 0) {
       return (
         <div>
           {index !== 0 && <hr />}
-          <h2>{link.name}</h2>
+          <h2 class="link-header">{link.name}</h2>
           {link.youTubeLink ? (
             <iframe
-              width="100%"              
               src={link.youTubeLink}
               title={link.name}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -33,7 +32,7 @@ if (limit > 0) {
             />
           ) : undefined}
           {link.raw ? (
-            <iframe src={link.raw.src} width="100%" />
+            <iframe src={link.raw.src} />
           ) : undefined}
           {index === limit - 1 && <hr />}
         </div>
@@ -43,17 +42,14 @@ if (limit > 0) {
 </div>
 
 <style>
-  h2,
-  .post-item-footer {
+  h2 {
     font-family: var(--font-family-sans);
     font-weight: 700;
   }
 
-  .post-item-date {
-    color: var(--text-secondary);
-    text-align: left;
-    text-transform: uppercase;
-    margin-right: 16px;
+  .link-header {
+    margin-bottom: 0.5em;
+
   }
 
   hr {
@@ -61,6 +57,7 @@ if (limit > 0) {
   }
 
   iframe{
+    width: 100%;
     aspect-ratio: 16 / 9
   }
 </style>
