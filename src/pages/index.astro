@@ -1,5 +1,4 @@
 ---
-import BlogList from "../components/BlogList.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "Stephen's Blog";
@@ -11,11 +10,16 @@ const permalink = Astro.site.href;
   <div class="home-container">
     <div class="home-copy">
       <h1>Hello I am Stephen!</h1>
+      <h3>@SCooperDev</h3>
       <p>
         I'm a senior software engineer at <a
           href="https://www.ag-grid.com"
           target="_blank">AG Grid</a
         > who enjoys blogging and speaking at conferences.
+      </p>
+      <p>
+        Have a look at my latest <a class="" href="/blog">blogs</a> or some of my
+        recent <a class="" href="/content">talks</a>.
       </p>
     </div>
 
@@ -32,9 +36,6 @@ const permalink = Astro.site.href;
       </picture>
     </div>
   </div>
-  <h2 style="margin: 0;">&#8595; Latest Posts &#8595;</h2>
-  <BlogList limit={2} />
-  <a class="see-all" href="/blog">See all posts</a>
 </BaseLayout>
 
 <style>
@@ -56,6 +57,10 @@ const permalink = Astro.site.href;
     font-weight: 700;
     margin-bottom: 0.5em;
     line-height: 1.3;
+  }
+
+  .home-copy h3 {
+    margin-top: -1em;
   }
 
   .home-copy p {
@@ -105,47 +110,13 @@ const permalink = Astro.site.href;
       padding-bottom: 2em;
       text-align: center;
     }
+
+    .home-copy h3 {
+      margin-top: 0;
+    }
   }
 
   h2 {
     align-self: center;
-  }
-
-  .see-all {
-    width: fit-content;
-    align-self: center;
-    font-weight: bold;
-    font-size: x-large;
-  }
-  a.see-all {
-    color: inherit;
-    text-decoration: none;
-    padding: 10px 5px;
-    display: block;
-    position: relative;
-    margin-left: 20px;
-    min-width: 70px;
-    text-align: center;
-  }
-
-  a.see-all:not(.selected) {
-    opacity: 0.7;
-  }
-
-  a.see-all::before {
-    content: "";
-    position: absolute;
-    transition: transform 0.3s ease;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--text-secondary);
-    transform: scaleX(0);
-  }
-
-  a.see-all:hover::before,
-  .selected::before {
-    transform: scaleX(1);
   }
 </style>
