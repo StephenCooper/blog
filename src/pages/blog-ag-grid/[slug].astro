@@ -1,7 +1,6 @@
 ---
 import BlogPost from "../../components/BlogPost.astro";
 import { loadAllArticles } from "../../data/blog-posts/DevApiService";
-import "../../styles/prism.css";
 
 export async function getStaticPaths() {
   let allPosts: any = await loadAllArticles("AG Grid");

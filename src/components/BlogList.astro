@@ -1,7 +1,7 @@
 ---
 import { loadAllArticles } from "../data/blog-posts/DevApiService";
 
-const { header, limit = -1, organization, current = "blog" } = Astro.props;
+const { limit = -1, organization, current = "blog" } = Astro.props;
 
 let allPosts: any = await loadAllArticles(organization);
 
@@ -12,7 +12,6 @@ if (limit > 0) {
 ---
 
 <div class="container">
-  <h1>{header}</h1>
   <slot />
   {
     allPosts.map((post, index) => {
@@ -59,5 +58,9 @@ if (limit > 0) {
 
   hr {
     margin: 60px auto;
+  }
+
+  img {
+    margin-bottom: 0.1em;
   }
 </style>

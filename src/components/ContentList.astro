@@ -1,13 +1,9 @@
 ---
-const { header, links, limit = -1, current = "content" } = Astro.props;
+const { links, limit = -1 } = Astro.props;
 export type ContentLink = {
   name: string;
   youTubeLink?: string;
-  raw?: {
-    src: string;
-    width: string;
-    height: string;
-  };
+  src?: string;
 };
 let linksToShow: ContentLink[] = links;
 if (limit > 0) {
@@ -16,7 +12,6 @@ if (limit > 0) {
 ---
 
 <div class="container">
-  <h1>{header}</h1>
   {
     linksToShow.map((link, index) => {
       return (
@@ -31,8 +26,8 @@ if (limit > 0) {
               allowfullscreen
             />
           ) : undefined}
-          {link.raw ? (
-            <iframe src={link.raw.src} />
+          {link.src ? (
+            <iframe src={link.src} />
           ) : undefined}
           {index === limit - 1 && <hr />}
         </div>
