@@ -10,11 +10,9 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.15.1",
     "@astrojs/svelte": "^2.0.0",
     "@types/markdown-it": "^12.2.3",
     "astro": "^2.0.2",
-    "rehype-external-links": "^2.0.0",
     "sass": "^1.57.1"
   },
   "dependencies": {

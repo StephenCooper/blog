@@ -49,7 +49,7 @@
 
 <div class="theme-toggle">
   {#each themes as t, i}
-    <label class={theme === t ? 'checked' : ''}>
+    <label class={theme === t ? 'checked' :'not-checked'}>
       {@html icons[i]}
       <input
         type="radio"

@@ -26,7 +26,7 @@ if (limit > 0) {
                 {post.title}
               </a>
             </h2>
-            <p>{post.description}</p>
+            <p class="description">{post.description}</p>
             <div class="post-item-footer">
               <span class="post-item-date">— {post.readable_publish_date}</span>
               <span class="post-item-date">
@@ -62,5 +62,11 @@ if (limit > 0) {
 
   img {
     margin-bottom: 0.1em;
+  }
+
+  .description{
+    font-size: 1.1em;
+    line-height: 1.5em;
+    margin: 0.75em 0;
   }
 </style>
