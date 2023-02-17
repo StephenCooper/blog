@@ -18,6 +18,15 @@ const { title, description, permalink, current, canonical } = Astro.props;
     <BaseHead title={title} description={description} permalink={permalink} />
     {canonical && <link rel="canonical" href={canonical} />}
   </head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PTK9HMFQ5K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PTK9HMFQ5K');
+</script>
   <body>
     <div class="layout">
       <Header current={current} />
