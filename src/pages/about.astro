@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-
 const title = "Stephen Cooper";
-const description = "Stephen Cooper, Senior Software Engineer at AG Grid in London.";
+const description =
+  "Stephen Cooper, Senior Software Engineer at AG Grid in London.";
 const permalink = `${Astro.site.href}about`;
 ---
 
@@ -15,37 +15,39 @@ const permalink = `${Astro.site.href}about`;
 >
   <div class="container">
     <h3>About</h3>
-    <figure class="about-image">
-      <img
-        class="circle"
-        src="/assets/profile-pic.webp"
-        alt="Stephen Cooper"
-        width="330"
-      />
-    </figure>
-    <p>
-      Hi, I'm <strong>Stephen</strong>. I'm a senior software engineer at <a
-        href="https://www.ag-grid.com"
-        target="_blank">AG Grid</a
-      >.
-    </p>
-    <p>
-      I enjoy blogging and speaking at conferences and meet-ups about things
-      that I have built and learnt.
-    </p>
-    <p>I have over 10 years of industry experience with my previous role at <a
-      href="https://www.gresearch.co.uk/"
-      target="_blank">G-Research</a
-    > building tooling for Market Data Analysts and Quantative Researchers.</p>
+    <div class="two-columns">
+      <div>
+        <p>
+          Hi, I'm <strong>Stephen</strong>. I'm a senior software engineer at <a
+            href="https://www.ag-grid.com"
+            target="_blank">AG Grid</a
+          >.
+        </p>
+        <p>
+          I enjoy blogging and speaking at conferences and meet-ups about things
+          that I have built and learnt.
+        </p>
+        <p>
+          I have over 10 years of industry experience with my previous role at <a
+            href="https://www.gresearch.co.uk/"
+            target="_blank">G-Research</a
+          > building tooling for Market Data Analysts and Quantative Researchers.
+        </p>
+
+        <p>
+          Now at <a href="https://www.ag-grid.com" target="_blank">AG Grid</a> I
+          am focused on ensuring our users have the best developer experience when
+          working with the grid.
+        </p>
+      </div>
+      <figure class="">
+        <img class="rounded" src="/assets/ngconf23.webp" alt="Stephen Cooper" />
+      </figure>
+    </div>
 
     <p>
-      Now at <a
-        href="https://www.ag-grid.com"
-        target="_blank">AG Grid</a
-      > I am focused on ensuring our users have the best developer experience when working with the grid.
+      Outside of work, my wife and I have four children and a dog called Coco!
     </p>
-
-    <p>Outside of work, my wife and I have four children and a dog called Coco!</p>
     <div>
       <img
         class="circle"
@@ -58,21 +60,20 @@ const permalink = `${Astro.site.href}about`;
 </BaseLayout>
 
 <style>
-  .about-image {
-    float: right;
-    margin: -3em -7em 2em 2em;
-    max-width: 300px;
-  }
-
   .circle {
     border-radius: 50%;
     margin-bottom: 1.5em;
   }
 
-  @media (max-width: 1020px) {
-    .about-image {
-      float: none;
-      margin: 0 auto 2em;
-    }
+  .rounded {
+    border-radius: 10%;
+    margin-top: 1.5em;
+  }
+
+  .two-columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2em;
   }
 </style>
