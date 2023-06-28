@@ -4,8 +4,26 @@ import { loadAllArticles } from "../data/blog-posts/DevApiService";
 const { limit = -1, organization, current = "blog" } = Astro.props;
 
 let allPosts: any = await loadAllArticles(organization);
-
-//allPosts = allPosts.sort((a: any, b: any) => b.positive_reactions_count - a.positive_reactions_count);
+allPosts = allPosts.sort((a: any, b: any) => {
+  const favourRecent = (post: any) => {
+    const date = new Date(post.published_at);
+    const diff = Date.now() - date.getTime();
+    const diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+    let scaling = 1;
+    if(diffDays < 90){
+      scaling = 100;
+    }else if(diffDays < 180){
+      scaling = 20;
+    }else if(diffDays < 365){
+      scaling = 10;
+    }
+    if(post.positive_reactions_count < 10){
+      return 0;
+    } 
+    return post.positive_reactions_count * scaling;
+  };
+  return favourRecent(b) - favourRecent(a); 
+});
 if (limit > 0) {
   allPosts = allPosts.slice(0, limit);
 }
@@ -26,7 +44,7 @@ if (limit > 0) {
                 {post.title}
               </a>
             </h2>
-            <p class="description">{post.description}</p>
+            <p class="description" set:html={post.description}></p>
             <div class="post-item-footer">
               <span class="post-item-date">— {post.readable_publish_date}</span>
               <span class="post-item-date">
