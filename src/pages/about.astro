@@ -15,14 +15,14 @@ const permalink = `${Astro.site.href}about`;
 >
   <div class="container">
     <h3>About</h3>
-    <div class="two-columns">
+    <p>
+      Hi, I'm <strong>Stephen</strong>. I'm a senior software engineer at <a
+        href="https://www.ag-grid.com"
+        target="_blank">AG Grid</a
+      >.
+    </p>
+    <div class="about-container">
       <div>
-        <p>
-          Hi, I'm <strong>Stephen</strong>. I'm a senior software engineer at <a
-            href="https://www.ag-grid.com"
-            target="_blank">AG Grid</a
-          >.
-        </p>
         <p>
           I enjoy blogging and speaking at conferences and meet-ups about things
           that I have built and learnt.
@@ -40,7 +40,7 @@ const permalink = `${Astro.site.href}about`;
           working with the grid.
         </p>
       </div>
-      <figure class="">
+      <figure class="about-img">
         <img class="rounded" src="/assets/ngconf23.webp" alt="Stephen Cooper" />
       </figure>
     </div>
@@ -70,10 +70,21 @@ const permalink = `${Astro.site.href}about`;
     margin-top: 1.5em;
   }
 
-  .two-columns {
+  .about-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 2em;
+  }
+
+  @media (max-width: 600px) {
+    .about-container {
+      flex-direction: column-reverse;
+    }
+
+    .about-img {
+      text-align: center;
+      margin: 0;
+    }
   }
 </style>
