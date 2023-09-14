@@ -1,9 +1,12 @@
 ---
+import { Image } from "astro:assets";
 const { links, limit = -1 } = Astro.props;
 export type ContentLink = {
   name: string;
   youTubeLink?: string;
   src?: string;
+  url?: string;
+  img?: ImageMetadata;
 };
 let linksToShow: ContentLink[] = links;
 if (limit > 0) {
@@ -28,6 +31,12 @@ if (limit > 0) {
           ) : undefined}
           {link.src ? (
             <iframe src={link.src} />
+          ) : link.url ? (
+            <div>
+              <a href={link.url} target="_blank">
+                <Image src={link.img} alt={link.name} />
+              </a>
+            </div>
           ) : undefined}
           {index === limit - 1 && <hr />}
         </div>
@@ -51,8 +60,9 @@ if (limit > 0) {
     margin: 60px auto;
   }
 
-  iframe{
+  iframe {
     width: 100%;
-    aspect-ratio: 16 / 9
+    aspect-ratio: 16 / 9;
   }
+
 </style>
