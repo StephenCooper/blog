@@ -9,6 +9,11 @@ import "../styles/prism.css";
 const { articleId, current, permalink } = Astro.props;
 
 let article: any = await loadArticle(articleId);
+if(!article){
+  console.error("Article not found", articleId);
+  return <h1>Article not found</h1>
+}
+
 const {
   body_markdown,
   title,
