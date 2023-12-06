@@ -24,6 +24,10 @@ const {
   cover_image,
 } = article;
 
+if(!body_markdown){
+  console.error("Article body not found", articleId);
+}
+
 const md = new MarkdownIt();
 md.use(prism);
 
