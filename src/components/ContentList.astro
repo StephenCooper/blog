@@ -34,7 +34,7 @@ if (limit > 0) {
           ) : link.url ? (
             <div>
               <a href={link.url} target="_blank">
-                <Image src={link.img} alt={link.name} />
+                <Image src={link.img!} alt={link.name} />
               </a>
             </div>
           ) : undefined}

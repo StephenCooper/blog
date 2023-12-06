@@ -8,15 +8,13 @@ const permalink = `${Astro.site.href}content`;
 
 
 import jsNation2023 from './jsnation-2023.png';
-import reactLondon from './ReactLondon.png';
 import reactUS from './ReactUS.png';
 
 
-const youTubeLinks: ContentLink[] = [
+const contentItems: ContentLink[] = [
 {
     name: "React Advanced 2023: Patterns for Performance",
-    url: "https://portal.gitnation.org/contents/patterns-for-performance",
-    img: reactLondon,
+    youTubeLink: "https://www.youtube.com/embed/qR608qHWTCA"
   },
   {
     name: "React Summit US 2023: Rendering: To Sync or Not to Sync",
@@ -78,5 +76,5 @@ const youTubeLinks: ContentLink[] = [
   permalink={permalink}
   current="content"
 >
-  <ContentList header={title} links={youTubeLinks} current="content" />
+  <ContentList header={title} links={contentItems} current="content" />
 </BaseLayout>
