@@ -3,18 +3,28 @@ import ContentList, { ContentLink } from "../../components/ContentList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Stephen Cooper";
-const description = "Latest content from Stephen Cooper, Senior Software Engineer at AG Grid in London.";
+const description =
+  "Latest content from Stephen Cooper, Senior Software Engineer at AG Grid in London.";
 const permalink = `${Astro.site.href}content`;
 
-
-import jsNation2023 from './jsnation-2023.png';
-import reactUS from './ReactUS.png';
-
+import jsNation2023 from "./jsnation-2023.png";
+import reactUS from "./ReactUS.webp";
+import reactAdv from "./reactAdv.webp";
 
 const contentItems: ContentLink[] = [
-{
+  {
+    name: "React Advanced London 2024: Perfecting Your Profiling (React)",
+    url: "https://portal.gitnation.org/contents/visualising-data-with-react-ag-grid-and-ag-charts",
+    img: reactAdv,
+  },
+  {
+    name: "NG-DE 2024: Perfecting Your Profiling (Angular)",
+    youTubeLink:
+      "https://www.youtube.com/embed/E9C_bElIZ0E?si=Grcx4g13u35vtgDI&amp;start=23680",
+  },
+  {
     name: "React Advanced 2023: Patterns for Performance",
-    youTubeLink: "https://www.youtube.com/embed/qR608qHWTCA"
+    youTubeLink: "https://www.youtube.com/embed/qR608qHWTCA",
   },
   {
     name: "React Summit US 2023: Rendering: To Sync or Not to Sync",
@@ -23,11 +33,13 @@ const contentItems: ContentLink[] = [
   },
   {
     name: "NG Tiny Conf 2023: Is your Component Ready for Strict Mode?",
-    youTubeLink: "https://www.youtube.com/embed/hIMgpj3qR1E?si=Od6o2lhqgvIY8Yni",
+    youTubeLink:
+      "https://www.youtube.com/embed/hIMgpj3qR1E?si=Od6o2lhqgvIY8Yni",
   },
   {
     name: "Angular Community Meetup May 2023",
-    youTubeLink: "https://www.youtube.com/embed/gA6iJbA9oBg?si=3UAvkq-awrV8wREl",
+    youTubeLink:
+      "https://www.youtube.com/embed/gA6iJbA9oBg?si=3UAvkq-awrV8wREl",
   },
   {
     name: "JS Nation 2023: Supercharged Code Refactoring via Abstract Syntax Trees",
@@ -40,7 +52,8 @@ const contentItems: ContentLink[] = [
   },
   {
     name: "Dev Chat",
-    youTubeLink: "https://www.youtube.com/embed/6UBj-L9Phqg?si=kSLPlmfOBHq5Rw3t",
+    youTubeLink:
+      "https://www.youtube.com/embed/6UBj-L9Phqg?si=kSLPlmfOBHq5Rw3t",
   },
   {
     name: "AG Grid at ng-Conf 2022",
